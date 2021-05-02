@@ -1,0 +1,115 @@
+/* Tic Tac Toe game */
+header {
+    text-align: center;
+    margin-left: 20vw;
+    margin-bottom: 30px;
+}
+header h1 {
+    margin-bottom: 20px;
+}
+header #player-turn {
+    font-weight: 600;
+}
+#gameboard {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    height: 300px;
+    position: relative;
+}
+#gameboard .tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    width: 100px;
+    height: 100px;
+    box-sizing: border-box;
+}
+#gameboard .tile:hover {
+    cursor: pointer;
+}
+#gameboard .line {
+    position: absolute;
+    z-index: 1;
+    background: #f6f7eb;
+    border-radius: 2px;
+}
+#gameboard .r {
+    width: 300px;
+    height: 4px;
+}
+#gameboard .r-1 {
+    top: 98px;
+}
+#gameboard .r-2 {
+    bottom: 98px;
+}
+#gameboard .c {
+    width: 4px;
+    height: 300px;
+}
+#gameboard .c-1 {
+    left: 98px;
+}
+#gameboard .c-2 {
+    right: 98px;
+}
+#num-of-players {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+#num-of-players #toggle-switch {
+    margin: 0 10px 0 10px;
+    width: 50px;
+    height: 25px;
+    border-radius: 100px;
+    border: 2px solid #f6f7eb;
+}
+#num-of-players #toggle-switch #toggle-btn {
+    float: left;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #7fe791;
+}
+#num-of-players #toggle-switch #toggle-btn:hover {
+    cursor: pointer;
+}
+#gameover-msg {
+    position: absolute;
+    z-index: 2;
+    text-align: center;
+    color: #393e41;
+    width: 200px;
+    height: 150px;
+    background: #f6f7eb;
+    border-radius: 8px;
+    box-shadow: 0 0 5px black;
+    display: none;
+}
+#gameover-msg h3 {
+    margin-top: 35px;
+    margin-bottom: 20px;
+}
+#gameover-msg button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #f6f7eb;
+    margin: auto;
+    padding: 8px;
+    background: #16b550;
+    border-radius: 4px;
+    border: none;
+}
+#gameover-msg button:hover {
+    cursor: pointer;
+}
+
+
+
+
+
