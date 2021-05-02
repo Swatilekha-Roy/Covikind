@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>Covikind</title>
+
+    <!-- PaperCSS -->
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css">
+
+    <!-- FA CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css" rel="stylesheet">
+
+    <!-- WOW CSS -->
+    <link rel="stylesheet" href="css/animate.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">  
+
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="border fixed split-nav" style="background-color: #e7e1fb;">
+        <div class="nav-brand">
+            <a href="#"><img src="img/nav-logo.png" style="height: 56px; border: none;"/></a>
+        
+        </div>
+        <div class="collapsible">
+        <input id="collapsible1" type="checkbox" name="collapsible1">
+        <label for="collapsible1">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </label>
+        <div class="collapsible-body">
+            <ul class="inline">
+            <li><a href="/index.html" class="active-nav">Home</a></li>
+            <li><a href="/play.html">Play</a></li>
+            <li><a href="/draw.html">Draw</a></li>
+            <li><a href="/journal.html">Journal</a></li>
+            <li class="nav-item-active"><a href="/selfcare.html">Self Care</a></li>
+            <li><a href="https://github.com/Swatilekha-Roy/Covikind"><i class="fab fa-github" style="font-size: 40px"></i></a></li>
+            </ul>
+        </div>
+        </div>
+
+        <!-- Lights -->
+        <ul class="lightrope">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+    </nav>
+
+    <!-- Light control button -->
+    <button class="btn btn-primary slf-btn" onclick="lightoff()" style="background-color: rgb(92, 111, 165); margin-left: 3%; color: #ffffff;"> Lights Off</button>
+
+
+    <!-- Breathing section -->
+			<div class="breathe-in" style="width: 100vw; height: 90vh; margin-top: 10vh;">
+				<h2 style="text-align: left; margin: 2%; font-size: 40px;"><strong>Meditate With Us...</strong></h2>
+				
+                <audio
+                    controls
+                    src="audio/meditation.mp3" style="margin-left: 2vw;" autoplay loop>
+                        Your browser does not support the
+                        <code>audio</code> element.
+                </audio>
+                <hr>
+				<div class="landscape">
+					<p>Breathe In</p>
+				</div>
+				<div class="glass">
+					<p>Breathe Out</p>
+				</div>
+			</div>
+
+
+
+
+        <!-- Self Care -->
+        <div class="container">
+            <div class="row">
+    
+                <div class="col-xs-12 col-md-4">
+                    <img src="img/hug.png" class="wow fadeInDown" style="border: none; width: 70%;"/>
+                </div>
+                
+                <div class="col-xs-12 col-md-5 wow fadeInDown" style="float: right;">
+                    <p>
+                        <h2>How to Take Care of Yourself?</h2>
+                        <ul>
+                            <li>Take some time off from your screens.</li>
+                            <li>Appreciate your caregivers and the community that is helping you out.</li>
+                            <li>Limit yourself from watching too much news, especially related to the pandemic.</li>
+                            <li>Listen to music or read lighthearted books.</li>
+                            <li>Indulge yourself in hobbies.</li>
+                            <li>Try meditating for a few minutes everyday.</li>
+                            <li>Stay calm and keep yourself hydrated.</li>
+                            <li>Set reminders for timing food breaks, meds and other necessities so that you can avoid anxiety.</li>
+                        </ul>
+                    </p>
+                </div>
+    
+                
+            </div>
+        </div>
+
+    <!-- Blogs -->
+    <div class="main" id="com-story">
+  
+        <ul class="cards">
+          <li class="cards_item wow fadeInUp">
+            <div class="card">
+              <div class="card_image"><img src="https://www.wwmedgroup.com/wp-content/uploads/pexels-yuri-manei-3131819-3-700x390-c-default.jpg"></div>
+              <div class="card_content">
+                <h2 class="card_title">Taking Care of Your Mental Health During COVID-19</h2>
+                <p class="card_text">Many are careful to socially distance, wear face masks and wash hands regularly to help prevent the spread of COVID-19 and maintain the best possible physical health. But some don’t make the same considerations for mental health and coronavirus when assessing overall wellness...
+
+                    In this post, we’ll review the effect this global pandemic has had on our collective mental health, offer ways to cope until the virus is contained and offer...</p>
+                <a href="https://www.wwmedgroup.com/blog/taking-care-of-your-mental-health-during-covid-19/" ><button class="btn card_btn" style="margin-top: 1%">Take me!</button></a>
+              </div>
+            </div>
+          </li>
+      
+          <li class="cards_item wow fadeInUp">
+            <div class="card">
+              <div class="card_image"><img src="https://www.carehospitals.com/wp-content/uploads/2020/11/MHIllustration1.png"></div>
+              <div class="card_content">
+                <h2 class="card_title">How To Manage Mental Health During COVID-19 Pandemic</h2>
+                <p class="card_text">While taking care of our mental health should be a priority at all times, the current global pandemic makes it imperative to pay close attention to mental and...</p>
+                <a href="https://www.carehospitals.com/how-to-manage-mental-health-during-covid-19-pandemic/"><button class="btn card_btn" style="margin-top: 1%;">Take me!</button></a>
+              </div>
+            </div>
+          </li>
+      
+      
+          <li class="cards_item wow fadeInUp">
+            <div class="card">
+              <div class="card_image"><img src="https://intermountainhealthcare.org/-/media/images/modules/blog/posts/2020/04/caring-for-your-emotional-wellness.jpg?la=en&h=504&w=896&mw=896&hash=3D311CE5B3362FC294911C47E50E4E0199CA7642"></div>
+              <div class="card_content">
+                <h2 class="card_title">10 ways to care for your emotional and mental wellbeing during COVID-19</h2>
+                <p class="card_text">While these uncertain times present new stresses for many of us, things will get better eventually. Normal will return. The world is full of good people who will help each other. Here are 10 steps you can take to care for your emotional and mental well-being during COVID-19:
+
+                    1. Exercise and get physical activity every day
+                    </p>
+                <a href="https://intermountainhealthcare.org/blogs/topics/covid-19/2020/04/caring-for-your-emotional-and-mental-welbeing-during-covid-19/"><button class="btn card_btn" style="margin-top: 17%">Take me!</button></a>
+              </div>
+            </div>
+          </li>
+      
+         
+      
+        </ul>
+      </div>
+
+
+
+
+
+
+    
+
+    <!-- Surprise -->
+
+<div class="sur-container" id="sur">
+
+	<div class="mockup mockup-macbook loaded opened">
+		
+	  <div class="part top">
+
+		<img src="https://d1xm195wioio0k.cloudfront.net/images/mockup/macbook-top.svg" alt="" class="top">
+		<img src="https://d1xm195wioio0k.cloudfront.net/images/mockup/macbook-cover.svg" alt="" class="cover">
+  
+		<img src="http://img.picturequotes.com/2/541/540205/winnie-the-pooh-quote-1.jpg" alt="" class="screen">
+	  </div>
+	  <div class="part bottom">
+		<img src="https://d1xm195wioio0k.cloudfront.net/images/mockup/macbook-cover.svg" alt="" class="cover">
+		<img src="https://d1xm195wioio0k.cloudfront.net/images/mockup/macbook-bottom.svg" alt="" class="bottom">
+	  </div>
+	</div>
+  </div>
+<br><br><br><br>
+
+    <!-- Footer -->
+    <div class="footer-con row flex-top flex-center">
+        <div class="col-12">
+            <footer class="border shadow">
+                <p style="margin-left: 3%">Made with <i class="fas fa-heart"></i> by Swatilekha Roy.
+            </footer>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function lightoff() {
+            var x = document.querySelector(".lightrope");
+            var y = document.querySelector(".slf-btn");
+            if(x.style.display === "block")
+            {
+                x.style.display = "none";
+                y.innerHTML = "Lights On";
+            }
+            else
+            {
+                x.style.display = "block";
+                y.innerHTML = "Lights Off";
+            }
+        }
+
+    </script>
+
+    <!-- WOW script -->
+    <script src="js/wow.min.js"></script>
+
+    <script>
+        new WOW().init();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>Covikind</title>
+
+    <!-- PaperCSS -->
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css">
+
+    <!-- FA CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css" rel="stylesheet">
+
+    <!-- WOW CSS -->
+    <link rel="stylesheet" href="css/animate.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">  
+
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/play.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="border fixed split-nav" style="background-color: #e7e1fb;">
+        <div class="nav-brand">
+            <a href="#"><img src="img/nav-logo.png" style="height: 56px; border: none;"/></a>
+        
+        </div>
+        <div class="collapsible">
+        <input id="collapsible1" type="checkbox" name="collapsible1">
+        <label for="collapsible1">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </label>
+        <div class="collapsible-body">
+            <ul class="inline">
+            <li><a href="index.html" class="active-nav">Home</a></li>
+            <li  class="nav-item-active"><a href="/play.html">Play</a></li>
+            <li><a href="draw.html">Draw</a></li>
+            <li><a href="journal.html">Journal</a></li>
+            <li><a href="selfcare.html">Self Care</a></li>
+            <li><a href="https://github.com/Swatilekha-Roy/Covikind"><i class="fab fa-github" style="font-size: 40px"></i></a></li>
+            </ul>
+        </div>
+        </div>
+
+        <!-- Lights -->
+        <ul class="lightrope">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+    </nav>
+
+
+    <!-- Tic Tac Toe Game -->
+    <header class="paper ttt-h" style=" width: 60%; background-color: rgb(230, 136, 107); align-items: center;">
+        <h1>Play this relaxing game of 'Tic-tac-toe' to calm your nerves!</h1>
+        <p><span id="player-turn"></span>'s turn</p>
+      </header>
+      <main id="gameboard" style="margin-left: 20vw;">
+        <div class="line r r-1"></div>
+        <div class="line r r-2"></div>
+        <div class="line c c-1"></div>
+        <div class="line c c-2"></div>
+      </main>
+      <div id="num-of-players">
+        <p>One Player</p>
+        <div id="toggle-switch">
+          <div id="toggle-btn"></div>
+        </div>
+        <p>Two Player</p>
+
+        <div id="gameover-msg">
+            <h3 id="winner"></h3>
+            <button id="reset-btn">New Game</button>
+          </div>
+      </div>
+      
+      
+
+
+    <!-- Footer -->
+    <div class="footer-con row flex-top flex-center">
+        <div class="col-12">
+            <footer class="border shadow">
+                <p style="margin-left: 3%">Made with <i class="fas fa-heart"></i> by Swatilekha Roy.
+            </footer>
+        </div>
+    </div>
+
+
+    <!-- JQuery JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+        const gameboard = document.getElementById('gameboard');
+        const gameOverMsg = document.getElementById('gameover-msg');
+        const winner = document.getElementById('winner');
+        const resetBtn = document.getElementById('reset-btn');
+        const playerToggleBtn = document.getElementById('toggle-btn');
+        const playerTurn = document.getElementById('player-turn');
+        playerTurn.textContent = 'X';
+
+        const $ivory = '#F6F7EB';
+        const $green = '#16b550';
+
+        let tilesArr = [
+        0, 1, 2,
+        3, 4, 5,
+        6, 7, 8
+        ];
+
+        let isOnePlayer = true;
+        let isComputerTurn = false;
+        let isXTurn = true;
+        let isGameOver = false;
+        let validPlays = 0;
+        let winningCombo;
+
+        const addTiles = () => {
+        tilesArr.forEach((index) => {
+            const tile = document.createElement('div');
+            tile.id = index;
+            tile.classList.add('tile');
+            tile.addEventListener('click', () => handleClick(tile));
+            gameboard.appendChild(tile);
+        });
+        }
+
+        addTiles();
+
+        const tiles = document.querySelectorAll('.tile');
+
+        const handleClick = (tile) => {
+        if (isOnePlayer === true) {
+            if (isXTurn && tile.textContent === '') {
+            markX(tile);
+            isComputerTurn = true;
+            !isGameOver ? 
+            setTimeout(() => computerMarkO(), 1000) :
+            false;
+            }
+        }
+        if (isOnePlayer === false) {
+            if (isXTurn && tile.textContent === '') {
+            markX(tile);
+            } else if (!isXTurn && tile.textContent === '') {
+            markO(tile);
+            }
+        }
+        }
+
+        const markX = (tile) => {
+        tile.textContent = 'X';
+        tilesArr[tile.id] = 'X';
+        validPlays++;
+        isXTurn = !isXTurn;
+        isXTurn ? playerTurn.textContent = 'X' : playerTurn.textContent = 'O';
+        checkForWin();
+        validPlays === 9 ? displayMessage() : false;
+        }
+
+        const markO = (tile) => {
+        tile.textContent = 'O';
+        tilesArr[tile.id] = 'O';
+        validPlays++;
+        isXTurn = !isXTurn;
+        isXTurn ? playerTurn.textContent = 'X' : playerTurn.textContent = 'O';
+        checkForWin();
+        validPlays === 9 ? displayMessage() : false;
+        }
+
+        const getRandomTile = () => {
+        const availTilesArr = [];
+        for (let i = 0; i < tilesArr.length; i++) {
+            if (tilesArr[i] !== 'X' && tilesArr[i] !== 'O') {
+            availTilesArr.push(i);
+            }
+        }
+        const randomIndex = Math.floor(Math.random() * availTilesArr.length);
+        return availTilesArr[randomIndex];
+        }
+
+        const computerMarkO = () => {
+        if (isComputerTurn) {
+            let randomID = getRandomTile();
+            let randomTile = document.getElementById(randomID);
+            randomTile.textContent = 'O';
+            tilesArr[randomID] = 'O';
+            validPlays++;
+            isXTurn = !isXTurn;
+            isXTurn ? playerTurn.textContent = 'X' : playerTurn.textContent = 'O';
+            checkForWin();
+            validPlays === 9 ? displayMessage() : false;
+        }
+        isComputerTurn = false;
+        }
+
+        const checkForWin = () => {
+        // winning combos
+        // [0,1,2], [3,4,5], [6,7,8], [0,3,6], 
+        // [1,4,7], [2,5,8], [0,4,8], [2,4,6]
+        tilesArr[0] === tilesArr[1] &&
+        tilesArr[1] === tilesArr[2] &&
+        tilesArr[0] === tilesArr[2] ?
+        gameOver(0) :
+        false;
+
+        tilesArr[3] === tilesArr[4] &&
+        tilesArr[4] === tilesArr[5] &&
+        tilesArr[3] === tilesArr[5] ?
+        gameOver(1) :
+        false;
+
+        tilesArr[6] === tilesArr[7] &&
+        tilesArr[7] === tilesArr[8] &&
+        tilesArr[6] === tilesArr[8] ?
+        gameOver(2) :
+        false;
+
+        tilesArr[0] === tilesArr[3] &&
+        tilesArr[3] === tilesArr[6] &&
+        tilesArr[0] === tilesArr[6] ?
+        gameOver(3) :
+        false;
+
+        tilesArr[1] === tilesArr[4] &&
+        tilesArr[4] === tilesArr[7] &&
+        tilesArr[1] === tilesArr[7] ?
+        gameOver(4) :
+        false;
+
+        tilesArr[2] === tilesArr[5] &&
+        tilesArr[5] === tilesArr[8] &&
+        tilesArr[2] === tilesArr[8] ?
+        gameOver(5) :
+        false;
+
+        tilesArr[0] === tilesArr[4] &&
+        tilesArr[4] === tilesArr[8] &&
+        tilesArr[0] === tilesArr[8] ?
+        gameOver(6) :
+        false;
+
+        tilesArr[2] === tilesArr[4] &&
+        tilesArr[4] === tilesArr[6] &&
+        tilesArr[2] === tilesArr[6] ?
+        gameOver(7) :
+        false;
+
+        }
+
+        const gameOver = (val) => {
+        isGameOver = true;
+        winningCombo = val;
+        switch (winningCombo) {
+            case 0:
+            tiles[0].style.color = $green;
+            tiles[1].style.color = $green;
+            tiles[2].style.color = $green;
+            break;
+            case 1:
+            tiles[3].style.color = $green;
+            tiles[4].style.color = $green;
+            tiles[5].style.color = $green;
+            break;
+            case 2:
+            tiles[6].style.color = $green;
+            tiles[7].style.color = $green;
+            tiles[8].style.color = $green;
+            break;
+            case 3:
+            tiles[0].style.color = $green;
+            tiles[3].style.color = $green;
+            tiles[6].style.color = $green;
+            break;
+            case 4: 
+            tiles[1].style.color = $green;
+            tiles[4].style.color = $green;
+            tiles[7].style.color = $green;
+            break;
+            case 5:
+            tiles[2].style.color = $green;
+            tiles[5].style.color = $green;
+            tiles[8].style.color = $green;
+            break;
+            case 6:
+            tiles[0].style.color = $green;
+            tiles[4].style.color = $green;
+            tiles[8].style.color = $green;
+            break;
+            case 7:
+            tiles[2].style.color = $green;
+            tiles[4].style.color = $green;
+            tiles[6].style.color = $green;
+        }
+        displayMessage();
+        }
+
+        const displayMessage = () => {
+        if (isGameOver) {
+            setTimeout(() => {
+            gameOverMsg.style.display = 'block';
+            playerTurn.textContent === 'X' ? 
+            winner.textContent = 'Player O Wins!' : 
+            winner.textContent = 'Player X Wins!';
+            }, 1000);
+        } 
+        if (!isGameOver) {
+            gameOverMsg.style.display = 'block';
+            winner.textContent = 'Tie Game!'
+        }
+        }
+
+        const reset = () => {
+        tiles.forEach((tile) => {
+            tile.textContent = '';
+            tile.style.color = $ivory;
+        });
+        tilesArr = [
+            0, 1, 2,
+            3, 4, 5,
+            6, 7, 8
+        ];
+        winningCombo = '';
+        isXTurn = true;
+        isGameOver = false;
+        validPlays = 0;
+        playerTurn.textContent = 'X';
+        gameOverMsg.style.display = 'none';
+        }
+
+        const handleNumPlayers = () => {
+        isOnePlayer = !isOnePlayer;
+        isOnePlayer ? 
+        playerToggleBtn.style.float = 'left' : 
+        playerToggleBtn.style.float = 'right';
+        }
+
+        resetBtn.addEventListener('click', () => reset());
+        playerToggleBtn.addEventListener('click', () => handleNumPlayers());
+        });
+
+
+
+
+
+       </script>
+
+
+    <!-- WOW script -->
+    <script src="js/wow.min.js"></script>
+
+    <script>
+        new WOW().init();
+    </script>
+
+</body>
+
+</html>

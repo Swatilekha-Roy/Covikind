@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>Covikind</title>
+
+    <!-- PaperCSS -->
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css">
+
+    <!-- FA CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css" rel="stylesheet">
+
+    <!-- WOW CSS -->
+    <link rel="stylesheet" href="css/animate.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">  
+
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="border fixed split-nav" style="background-color: #e7e1fb;">
+        <div class="nav-brand">
+            <a href="#"><img src="img/nav-logo.png" style="height: 56px; border: none;"/></a>
+        
+        </div>
+        <div class="collapsible">
+        <input id="collapsible1" type="checkbox" name="collapsible1">
+        <label for="collapsible1">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </label>
+        <div class="collapsible-body">
+            <ul class="inline">
+            <li><a href="index.html" class="active-nav">Home</a></li>
+            <li><a href="play.html">Play</a></li>
+            <li class="nav-item-active"><a href="/draw.html">Draw</a></li>
+            <li><a href="journal.html">Journal</a></li>
+            <li><a href="selfcare.html">Self Care</a></li>
+            <li><a href="https://github.com/Swatilekha-Roy/Covikind"><i class="fab fa-github" style="font-size: 40px"></i></a></li>
+            </ul>
+        </div>
+        </div>
+
+        <!-- Lights -->
+        <ul class="lightrope">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+    </nav>
+
+      
+
+      <div id="container_div" style="margin-top: 4%;">
+        <div id="palette_div">
+          <div id="slider_track"></div>
+          <div id="slider">
+            <i id="slider_icon" class="fas fa-paint-brush"></i>
+
+          <div id="slider_mask"></div>
+          </div>
+          <div class="color" id="red" style="background:red"></div>
+          <div class="color" id="purple" style="background:purple"></div>
+          <div class="color" id="blue" style="background:blue"></div>
+          <div class="color" id="green" style="background:green"></div>
+          <div class="color" id="yellow" style="background:yellow"></div>
+          <div class="color" id="orange" style="background:orange"></div>
+          <div class="color" id="black" style="background:black"></div>
+          <div class="color" id="gray" style="background:gray"></div>
+          <div class="color" id="white" style="background:white"></div>
+        </div>
+        <div id="canvas_div">
+          <canvas id="sheet"></canvas>
+        </div>
+        <div id="footer_div" style="margin-bottom: 8%;">
+          <a id="clear" class="buttons">
+            <i class="fas fa-trash-alt footer_icons"></i>
+            
+          </a>
+          <a id="save" class="buttons">
+            <i class="far fa-save footer_icons"></i>
+        </a>
+        </div>
+      </div> 
+      
+      
+
+
+    <!-- Footer -->
+    <div class="footer-con row flex-top flex-center" style="position: fixed; left: 0; bottom: 0; margin-top: 5%; width: 30%;">
+        <div class="col-12">
+            <footer class="border shadow">
+                <p style="margin-left: 3%">Made with <i class="fas fa-heart"></i> by Swatilekha Roy.
+            </footer>
+        </div>
+    </div>
+
+
+    <!-- JQuery JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+    <script>
+        //primary variables
+var container = document.getElementById("container_div");
+var sliderTrack = document.getElementById("slider_track");
+var slider = document.getElementById("slider");
+var canvas = document.getElementById("sheet");
+var ctx = canvas.getContext("2d");
+
+//scale to window size
+resizeForWindow();
+var canvasPositionLeft = canvas.getBoundingClientRect().left + window.scrollX;
+var canvasPositionTop = canvas.getBoundingClientRect().top + window.scrollY;
+
+//prep slider
+var mouseX;
+var sliderLeft = $("#slider").position().left;
+var sliderLeftMin = sliderLeft;
+var sliderLeftMax = sliderLeft + $("#slider_track").width()*.965;
+var currentlySliding = false;
+
+//prep canvas for downloads with a white background
+clearCanvas();
+
+//prep markers
+var markerWidth = 2;  // min = 2, max = 100
+ctx.lineWidth = markerWidth;
+
+//colors
+var colors = document.getElementsByClassName("color");  //an HTMLCollection of .class elements
+var currentColor = "black";
+
+//prep drawing
+var currentlyDrawing = false;
+
+
+
+///---FUNCTIONS---///
+
+//scaling
+function resizeForWindow() {
+  if (window.innerWidth > window.innerHeight) {
+    container.style.height = window.innerHeight*.8+"px";
+    container.style.width = container.style.height;
+  } else {
+    container.style.width = window.innerWidth*.8+"px";
+    container.style.height = container.style.width;
+  }
+  canvas.width = document.getElementById("canvas_div").clientWidth;
+  canvas.height = document.getElementById("canvas_div").clientHeight;
+  canvasPositionLeft = canvas.getBoundingClientRect().left + window.scrollX;
+  canvasPositionTop = canvas.getBoundingClientRect().top + window.scrollY;
+  clearCanvas();
+  slider.style.left = "2%";
+  sliderLeft = $("#slider").position().left;
+  sliderLeftMin = sliderLeft;
+  sliderLeftMax = sliderLeft + $("#slider_track").width()*.965;
+}
+
+//slider
+function grab_slider(e) {
+  mouseX = e.pageX;
+  currentlySliding = true;                                    
+}
+
+function drag_slider(e) {
+  if (currentlySliding) {
+    var mouseXChange = e.pageX - mouseX;
+    if (sliderLeft + mouseXChange < sliderLeftMin) {
+      slider.style.left = sliderLeftMin + "px";
+    } else if (sliderLeft + mouseXChange > sliderLeftMax) {
+      slider.style.left = sliderLeftMax + "px";
+    } else {
+      slider.style.left = (sliderLeft + mouseXChange) + "px";
+    };
+  }
+}
+
+function drop_slider(e) {
+  sliderLeft = $("#slider").position().left;
+  updateMarker();
+  currentlySliding = false;
+}
+
+function updateMarker() {
+  //converts slider position to a proportional marker width of 2px-100px
+  markerWidth = (sliderLeft-sliderLeftMin)*98/(sliderLeftMax-sliderLeftMin-sliderLeftMin)+2;
+  ctx.lineWidth = markerWidth;
+}
+
+//colors
+function bindColors() {
+  for (i = 0; i < colors.length; i++) {
+    colors[i].addEventListener('click', selectColor);
+  }
+}
+
+function selectColor(e) {
+  currentColor = e.target.style.background;
+}
+
+//drawing
+function markerDown(e) {
+  currentlyDrawing = true;
+  var canvasX = e.pageX - canvasPositionLeft;
+  var canvasY = e.pageY - canvasPositionTop;
+  ctx.beginPath();
+  ctx.arc(canvasX, canvasY, markerWidth/2, 0, Math.PI * 2);
+  ctx.fillStyle = currentColor;
+  ctx.fill();
+  ctx.beginPath();
+}
+
+function draw(e) {
+  var canvasX = e.pageX - canvasPositionLeft;
+  var canvasY = e.pageY - canvasPositionTop;
+  if(currentlyDrawing) {
+    ctx.strokeStyle = currentColor;
+    ctx.fillStyle = currentColor;
+    ctx.lineTo(canvasX, canvasY);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(canvasX, canvasY, markerWidth/2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(canvasX, canvasY); 
+  }
+}
+
+function markerUp(e) {
+  currentlyDrawing = false;
+}
+
+//image actions
+function saveImage() {
+  var image = canvas.toDataURL("image/png");
+  var download = document.getElementById("save");
+  download.href = image;
+  download.download = 'drawing.png';
+}
+
+function clearCanvas() {
+  ctx.fillStyle = "white";
+  ctx.fillRect(0,0,canvas.width, canvas.height);
+}
+
+
+
+///---EVENTS---///
+
+//window
+window.addEventListener('resize', resizeForWindow);
+
+//slider
+slider.addEventListener("mousedown", grab_slider);
+document.addEventListener("mousemove", drag_slider);
+document.addEventListener("mouseup", drop_slider);
+
+slider.addEventListener("touchstart", grab_slider);
+document.addEventListener("touchmove", drag_slider);
+document.addEventListener("touchend", drop_slider);
+
+//color selection
+bindColors();
+
+//drawing
+canvas.addEventListener("mousedown", markerDown);
+canvas.addEventListener("mousemove", draw);
+document.addEventListener("mouseup", markerUp);
+
+canvas.addEventListener("touchstart", markerDown);
+canvas.addEventListener("touchmove", draw);
+document.addEventListener("touchend", markerUp);
+
+//image actions
+document.getElementById("save").addEventListener('click', saveImage);
+document.getElementById("clear").addEventListener('click', clearCanvas);
+    </script>
+
+
+    <!-- WOW script -->
+    <script src="js/wow.min.js"></script>
+
+    <script>
+        new WOW().init();
+    </script>
+
+</body>
+
+</html>

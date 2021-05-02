@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>Covikind</title>
+
+    <!-- PaperCSS -->
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css">
+
+    <!-- FA CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css" rel="stylesheet">
+
+    <!-- WOW CSS -->
+    <link rel="stylesheet" href="css/animate.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">  
+
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="border fixed split-nav" style="background-color: #e7e1fb;">
+        <div class="nav-brand">
+            <a href="#"><img src="img/nav-logo.png" style="height: 56px; border: none;"/></a>
+        </div>
+        <div class="collapsible">
+            <input id="collapsible1" type="checkbox" name="collapsible1">
+            <label for="collapsible1">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </label>
+            <div class="collapsible-body">
+                <ul class="inline">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/play.html">Play</a></li>
+                <li><a href="/draw.html">Draw</a></li>
+                <li class="nav-item-active"><a href="/journal.html">Journal</a></li>
+                <li><a href="/selfcare.html">Self Care</a></li>
+                <li><a href="https://github.com/Swatilekha-Roy/Covikind"><i class="fab fa-github" style="font-size: 40px"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Lights -->
+        <ul class="lightrope">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+    </nav>
+
+    
+    <!-- Search Entries -->
+    <div class="row search-j" style="margin-left: 5%;">
+        <div class="col-sm-8">
+            <form class="form-inline my-2 my-lg-0" style="margin-top: 10%;">
+                <input class="input-inline" id="searchTxt" type="text" placeholder="Search your entries..." id="paperInputs1" type="search" style="background-color: #ffffffc9;">                
+            </form>
+        </div>
+        <div class="col-sm-3" style="margin-top: 2%; margin-left: 1%;">
+            <button class="btn btn-small my-2 my-sm-0" type="submit" style="background-color: rgb(157, 248, 248);">Search</button>
+        </div>
+    </div>
+
+
+    <!-- Diary Section -->
+    <div class="container my-3"> 
+
+        <h2 style="text-align: center;">Your Quarantine Journal</h2>
+
+        <div class="card wow fadeInUp" style="width: 100%; background-color: rgb(250, 238, 131);">
+            <div class="card-body">
+            <h4 class="card-title" style="color: rgb(240, 143, 180);">Add Today's Entry</h4>
+            <br>
+            <div class="form-group">
+                <input class="input-inline border-dotted" id="addTitle" type="text" placeholder="Day Number" id="paperInputs1">
+                <textarea id="addTxt" class="paper" placeholder="Write Your Heart Out..." style="width: 90%;"></textarea>
+            </div>
+            <button class="paper-btn btn-primary" id="addBtn" style="background-color:rgba(189, 69, 115, 0.856); float: right; color: #ffffff;">Post this</button>
+            </div>
+        </div>
+
+        <br><hr>
+
+        <h3 style="margin-top: 13%;">Days you aced</h3>
+        <div id="notes" class="row container-fluid wow fadeInLeft">
+            
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-con row flex-top flex-center">
+        <div class="col-12">
+        <footer class="border shadow">
+            <p style="margin-left: 3%">Made with <i class="fas fa-heart"></i> by Swatilekha Roy.
+        </footer>
+        </div>
+    </div>
+
+    <!-- Custom script -->
+    <script src="js/journal.js"></script>
+
+    <!-- WOW script -->
+    <script src="js/wow.min.js"></script>
+
+    <script>
+        new WOW().init();
+    </script>
+</body>
+
+</html>
