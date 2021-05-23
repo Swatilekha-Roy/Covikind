@@ -11,4 +11,5 @@ A website serving as a mental strength respite haven for socially distanced COVI
 - PaperCSS
 
 ### Demo link
-https://tinytiger6.qoom.space/~/Covikind
+https://swatilekharoy.qoom.space/~/Covikind
+
